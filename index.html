@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Search</title>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="集字" />
+    <button id="searchButton">搜索</button>
+    <div id="images"></div>
+
+    <script>
+      document
+        .getElementById("searchButton")
+        .addEventListener("click", function () {
+          var searchTerm = document
+            .getElementById("search")
+            .value.toLowerCase()
+            .trim();
+          var imagesDiv = document.getElementById("images");
+          imagesDiv.innerHTML = ""; // Clear previous results
+
+          if (!searchTerm) return; // Do nothing if no search term
+
+          // Example image URLs based on search term
+          var tianImageUrl =
+            "https://img.picgo.net/2024/08/03/_20240803124407c2cd5d2082a494f3.jpg";
+          var diImageUrl =
+            "https://img.picgo.net/2024/08/03/_20240803124417102063a685e433ca.jpg";
+          var xuanImageUrl =
+            "https://img.picgo.net/2024/08/03/_202408031244272c1a3517a76e4376.jpg";
+          var huangImageUrl =
+            "https://img.picgo.net/2024/08/03/_2024080312444802c8545abecdfa08.jpg";
+
+          // Replace with actual image URLs
+          var images = {
+            天: tianImageUrl,
+            地: diImageUrl,
+            玄: xuanImageUrl,
+            黄: huangImageUrl,
+          };
+
+          // Create image elements and add to the page
+          Object.keys(images).forEach(function (key) {
+            if (searchTerm.includes(key)) {
+              var img = document.createElement("img");
+              img.src = images[key];
+              img.style.width = "100px"; // Set width
+              img.style.height = "auto"; // Maintain aspect ratio
+              imagesDiv.appendChild(img);
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
